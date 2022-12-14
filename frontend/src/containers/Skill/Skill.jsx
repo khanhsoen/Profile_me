@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AiFillEye, AiFillGithub } from "react-icons/ai";
+// import { AiFillEye, AiFillGithub } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 
@@ -35,11 +35,12 @@ const Skill = () => {
                      whileInView={{ opacity: [0, 1] }}
                      transition={{ duration: 0.5 }}
                      className="app__skills-item app__flex"
-                     key={skill.name + index}
+                     key={index}
                   >
                      <div
                         className="app__flex"
                         stype={{ backgroundColor: skill.bgColor }}
+                        
                      >
                         <img src={urlFor(skill.icon)} alt={skill.name} />
                      </div>
@@ -59,7 +60,7 @@ const Skill = () => {
                      </div>
 
                      <motion.div className="app__skills-exp-works">
-                        {experience.works.map((work) => (
+                        {experience.works.map((work, index) => (
                            <>
                               <motion.div
                                  whileInView={{ opacity: [0, 1] }}
@@ -67,13 +68,13 @@ const Skill = () => {
                                  className="app__skills-exp-work"
                                  data-tip
                                  data-for={work.name}
-                                 key={work.name}
+                                 key={work.name + index}
                               >
                                  <h4 className="bold-text">{work.name}</h4>
                                  <p className="p-text">{work.company}</p>
                               </motion.div>
 
-                              {/* <ReactTooltip
+                              <ReactTooltip
                                  key={work.name}
                                  id={work.name}
                                  effect="solid"
@@ -81,7 +82,7 @@ const Skill = () => {
                                  className="skills-tooltip"
                               >
                                  {work.desc}
-                              </ReactTooltip> */}
+                              </ReactTooltip>
                            </>
                         ))}
                      </motion.div>
@@ -95,8 +96,6 @@ const Skill = () => {
 
 export default AppWrap(
    MotionWrap(Skill, "app__skills"),
-   "skill",
+   "skills",
    "app__whitebg"
 );
-
-
