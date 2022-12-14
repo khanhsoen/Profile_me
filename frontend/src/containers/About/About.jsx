@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./About.scss";
 
-import { AppWrap } from "../../wrapper";
+import { AppWrap, MotionWrap } from "../../wrapper";
 import { urlFor, client } from "../../client";
 import { images } from "../../constants";
 
@@ -11,8 +11,7 @@ const About = () => {
 
    useEffect(() => {
       const query = '*[_type == "abouts"]';
-      client.fetch(query)
-      .then((data) => setAbouts(data));
+      client.fetch(query).then((data) => setAbouts(data));
    }, []);
 
    return (
@@ -35,9 +34,11 @@ const About = () => {
                   className="app__profile-item"
                >
                   <img src={urlFor(about.imgUrl)} alt={about.title}></img>
+
                   <h2 className="bold-text" stype={{ marginTop: 20 }}>
                      {about.title}
                   </h2>
+
                   <h2 className="p-text" stype={{ marginTop: 10 }}>
                      {about.description}
                   </h2>
@@ -48,4 +49,8 @@ const About = () => {
    );
 };
 
-export default AppWrap(About, 'about');
+export default AppWrap(
+   MotionWrap(About, "app__about"),
+   "about",
+   "app__whitebg"
+);
