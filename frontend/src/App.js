@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 
 import { About, Footer, Header, Skill, Work, Testimonial } from "./containers";
 import { Navbar } from "./components";
